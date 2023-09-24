@@ -1088,6 +1088,35 @@ This block of code installs and configures the *eshell-toggle* package and the *
 ;; Add hook to disable company mode when entering eshell mode
 (add-hook 'eshell-mode-hook 'my-disable-company-in-eshell)
 
+;; Configure eshell for better tab completion
+(defun pcmpl-eshell-setup ()
+  "Setup `pcmpl-eshell'. This must be run from `eshell-mode-hook'."
+  (when (and (boundp 'eshell-buffer-name)
+             eshell-buffer-name)
+    (unless (file-remote-p default-directory)
+      ;; Make sure our setup function has been called
+      (unless (advice-function-member-p #'pcmpl-eshell-setup eshell-dynamic-complete-functions)
+        (add-hook 'eshell-dynamic-complete-functions #'pcmpl-eshell-setup t))
+      ;; If pcomplete was not active, we activate it now.
+      ;; We also remove the hook, as it is no longer necessary.
+      (unless pcomplete-active-p
+        (remove-hook 'eshell-dynamic-complete-functions #'pcmpl-eshell-setup)
+        (setq-local pcomplete-cycle-completions nil)
+        (let ((buf eshell-buffer-name))
+          (with-temp-buffer
+            (shell-command (format "ls -aF %s" default-directory) t)
+            (goto-char (point-min))
+            (while (re-search-forward "^\\([^[:space:]]+\\)$" nil t)
+              (ignore-errors
+                (pcomplete-here*
+                 (list
+                  (replace-regexp-in-string "/$" "" (match-string-no-properties 0)))))))
+          (if (called-interactively-p 'any)
+              (message "Pcomplete shell setup done.")
+            (eshell-buffer-name)))))))
+
+(add-hook 'eshell-mode-hook #'pcmpl-eshell-setup)
+
 #+END_SRC
 
 * COMPLETION FRAMEWORKS
@@ -1263,6 +1292,21 @@ This block of code installs and configures the *consult* package, the *consult-t
   :ensure t
   :after flycheck
   :bind (:map flycheck-command-map ("!" . consult-flycheck)))
+
+;; Use consult-dir package for directory navigation features
+(use-package consult-dir
+  :ensure t   ;; Ensure that the package is installed
+  ;; Bind keys to consult-dir commands
+  :bind (
+         ;; Globally bind "C-x C-d" to consult-dir command. This allows you to select a directory from 
+         ;; recently visited directories or bookmarks.
+         ("C-x C-d" . consult-dir)
+         ;; In Vertico context (i.e., when Vertico minibuffer is active), bind "C-x C-d" to consult-dir command.
+         :map vertico-map
+         ("C-x C-d" . consult-dir)
+         ;; In Vertico context, bind "C-x C-j" to consult-dir-jump-file command. This allows you to jump directly 
+         ;; to a file within the selected directory.
+         ("C-x C-j" . consult-dir-jump-file)))
 
 #+END_SRC
 
