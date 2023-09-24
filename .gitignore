@@ -1,0 +1,14 @@
+# List of all the files and folders that are not git controlled
+
+.last-package-update-day
+elpa/
+elpaca/
+emacs_config.el
+forge-database.sqlite
+projectile-bookmarks.eld
+recentf
+sessions
+transient/
+treemacs-persist
+var/
+history
