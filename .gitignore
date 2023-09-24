@@ -12,3 +12,5 @@ transient/
 treemacs-persist
 var/
 history
+website_contents/
+eshell/

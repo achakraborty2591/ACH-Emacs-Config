@@ -3,58 +3,6 @@
 #+DESCRIPTION: ACH's personal Emacs config.
 #+STARTUP: showeverything
 
-* TABLE OF CONTENTS :TOC:
-- [[#introduction][INTRODUCTION]]
-- [[#config-file-starts-here][CONFIG FILE STARTS HERE]]
-  - [[#emacs_configel-file-top-contents][emacs_config.el file top contents]]
-- [[#garbage-collection][GARBAGE COLLECTION]]
-- [[#personal-information][PERSONAL INFORMATION]]
-- [[#package-manager-setup][PACKAGE MANAGER SETUP]]
-  - [[#elpaca-package-manager][Elpaca Package Manager]]
-  - [[#automatic-package-update][Automatic Package Update]]
-- [[#startup-settings][STARTUP SETTINGS]]
-- [[#auto-save-settings][AUTO-SAVE SETTINGS]]
-- [[#ui--appearance][UI & APPEARANCE]]
-  - [[#os-x-specific-settings][OS X Specific Settings]]
-  - [[#color-theme-settings][Color Theme Settings]]
-  - [[#diminish-settings][Diminish Settings]]
-  - [[#fancy-compilation-settings][Fancy Compilation Settings]]
-  - [[#dired-settings][Dired Settings]]
-  - [[#help-settings][Help Settings]]
-  - [[#neotree-settings][Neotree Settings]]
-  - [[#icon-settings][Icon Settings]]
-  - [[#dashboard-settings][Dashboard Settings]]
-  - [[#which-key-settings][Which Key Settings]]
-- [[#keybinding-settings][KEYBINDING SETTINGS]]
-  - [[#evil-mode-settings][Evil Mode Settings]]
-  - [[#general-keybinding-settings][General Keybinding Settings]]
-- [[#terminal-frameworks][TERMINAL FRAMEWORKS]]
-  - [[#vterm-settings][Vterm Settings]]
-  - [[#eshell-settings][Eshell Settings]]
-- [[#completion-frameworks][COMPLETION FRAMEWORKS]]
-  - [[#vertico-mode-settings][Vertico Mode Settings]]
-  - [[#consult-mode-settings][Consult Mode Settings]]
-- [[#programming-frameworks][PROGRAMMING FRAMEWORKS]]
-  - [[#flycheck-settings][Flycheck Settings]]
-  - [[#highlight-todo-settings][Highlight TODO Settings]]
-  - [[#lsp-settings][LSP Settings]]
-  - [[#git-settings][Git Settings]]
-  - [[#yasnippet-settings][YASnippet Settings]]
-  - [[#markdown-settings][Markdown Settings]]
-  - [[#json-settings][JSON Settings]]
-  - [[#latex-settings][LaTeX Settings]]
-  - [[#python-settings][Python Settings]]
-  - [[#typescript-settings][Typescript Settings]]
-  - [[#verilog-mode-settings][Verilog-Mode Settings]]
-  - [[#emacs-lisp-settings][Emacs Lisp Settings]]
-  - [[#yaml-settings][YAML Settings]]
-  - [[#scala-settings][Scala Settings]]
-  - [[#org-settings][ORG Settings]]
-- [[#miscellaneous-packages][MISCELLANEOUS PACKAGES]]
-- [[#list-of-all-keybindings][LIST OF ALL KEYBINDINGS]]
-- [[#config-file-ends-here][CONFIG FILE ENDS HERE]]
-  - [[#emacs_configel-file-top-contents-1][emacs_config.el file top contents]]
-
 * INTRODUCTION
 
 This org file is basically a manual of my entire emacs configuration. This file is updatable.
@@ -453,6 +401,28 @@ This block of code installs and configures the *fancy-compilation* package via t
   (fancy-compilation-mode))  ;; Enable fancy-compilation mode
 
 #+END_SRC
+
+** Counsel Settings
+
+This block of code installs and configures the *fancy-compilation* package via the *use-package* macro. The fancy-compilation package offers a more visually attractive compilation buffer in Emacs. The *:config* keyword precedes a call to the *fancy-compilation-mode* function, enabling this mode.
+
+#+BEGIN_SRC emacs-lisp
+
+;; Load the 'counsel' package
+(use-package counsel
+  :ensure t   ;; Ensure that the package is installed if not already
+  :after ivy  ;; Load this package after 'ivy'
+  :diminish   ;; Reduce or eliminate minor mode lighter in mode line
+  
+  :config     ;; Configuration options for 'counsel'
+  (counsel-mode 1)  ;; Enable 'counsel' mode
+
+  ;; Set initial input to nil. This prevents Ivy from populating 
+  ;; the minibuffer with an initial input when you call a command.
+  (setq ivy-initial-inputs-alist nil))
+
+#+END_SRC
+
 
 ** Dired Settings
 
@@ -1445,7 +1415,10 @@ This block of code installs and configures several packages associated with Git 
   :custom
   ;; Set git executable path and follow symlinks for magit
   (magit-git-executable "/opt/homebrew/bin/git")
-  (vc-follow-symlinks t))
+  (vc-follow-symlinks t)
+  :config
+  ;; Add post-refresh hook for doom modeline
+  (add-hook 'magit-post-refresh-hook #'doom-modeline-update-vcs-icon))
 
 ;; Use forge package after magit
 (use-package forge
@@ -1966,6 +1939,14 @@ This block of code installs and configures several packages in Emacs: *sudo-edit
 
 ;; Use adaptive-wrap package
 (use-package adaptive-wrap
+  :ensure t)
+
+;; Host your website on your local machine
+(use-package simple-httpd
+  :ensure t)
+
+;; Enable fontify of source blocks while publishing a website
+(use-package htmlize
   :ensure t)
 
 #+END_SRC
