@@ -1,15 +1,15 @@
-#+TITLE: GNU Emacs Config
-#+AUTHOR: Anirban Chakraborty (ACH)
+#+TITLE: GNU EMACS CONFIGURATION
+#+AUTHOR: Anirban Chakraborty
 #+DESCRIPTION: ACH's personal Emacs config.
 #+STARTUP: showeverything
 
-* INTRODUCTION
+* Introduction
 
 This org file is basically a manual of my entire emacs configuration. This file is updatable.
 
-* CONFIG FILE STARTS HERE
+* Start of the Configuration File
 
-** emacs_config.el file top contents
+** Top contents
 
 This block of code serves as the **header** and introductory **commentary** for the Emacs configuration file. It declares that this is an **Emacs Lisp source code block** and provides a brief description of the file as a **GNU Emacs Configuration**. A **disclaimer** clarifies that this file is not part of GNU Emacs. **Licensing details** under the GNU General Public License are provided, including a **warranty disclaimer**. Finally, a short commentary indicates that this file contains a complete **configuration for GNU Emacs**. The actual **configuration code** would follow after this introduction.
 
@@ -45,7 +45,7 @@ This block of code serves as the **header** and introductory **commentary** for 
 
 #+END_SRC
 
-* GARBAGE COLLECTION
+* Garbage Collection
 
 This block of code sets two Emacs variables associated with memory usage and recursion depth. The *gc-cons-threshold* variable determines the amount of memory that Emacs can utilize before triggering garbage collection. In this case, it's being set to 100000000 bytes (about 95 megabytes), meaning that Emacs will use more memory but will also spend less time performing garbage collection, potentially making it feel faster and more responsive. The *max-specpdl-size* variable establishes the maximum number of Lisp variable bindings & unwind-protects before Emacs signals an error, aiding in preventing infinite recursions. Here it's being increased from its default of 1300 to 5000.
 
@@ -59,7 +59,7 @@ This block of code sets two Emacs variables associated with memory usage and rec
 
 #+END_SRC
 
-* PERSONAL INFORMATION
+* Personal Information
 
 This code block is crucial as it establishes the user's identity within Emacs by setting the full name and email address. This information can be used in various contexts, such as when authoring commits in version control systems or filling out forms automatically. The *setq* function in this block of code is used to assign values to two variables: *user-full-name* and *user-mail-address*. It sets the user's full name as "Anirban Chakraborty" and the email address as "achakraborty2591@gmail.com".
 
@@ -68,7 +68,7 @@ This code block is crucial as it establishes the user's identity within Emacs by
   (setq user-mail-address "achakraborty2591@gmail.com")
 #+END_SRC
 
-* PACKAGE MANAGER SETUP
+* Package Manager
 
 ** Elpaca Package Manager
 
@@ -167,7 +167,7 @@ This block of code configures the *auto-package-update* package using the *use-p
 
 #+END_SRC
 
-* STARTUP SETTINGS
+* Startup
 
 This block of code customizes various global settings in Emacs to enhance the user experience. It configures *startup behavior*, *file handling*, *tab width*, *indentation*, *coding system*, *org mode links*, *backup files*, *mouse wheel usage*, *search sensitivity*, *error reporting*, and more. Certain features such as *automatic saving*, *lockfile creation*, and *toolbar display* are disabled. The block also adjusts how text is displayed and edited in Emacs, encompassing *bracket matching*, *selection replacement*, *line numbering*, *syntax highlighting*, and *subword navigation*. Additionally, it establishes *keybindings* for actions like quitting, increasing/decreasing text scale, and scrolling.
 
@@ -248,7 +248,7 @@ This block of code customizes various global settings in Emacs to enhance the us
 
 #+END_SRC
 
-* AUTO-SAVE SETTINGS
+* Auto-Save
 
 This block of code sets up Emacs' *auto-save* feature. It designates the temporary file directory as the location for all auto-saved files by setting the *auto-save-file-name-transforms* and *auto-save-list-file-prefix* variables. The frequency of auto-saving is controlled via the *auto-save-interval* and *auto-save-timeout* variables. A custom function named *save-buffer-if-visiting-file* is created which saves the current buffer only if it's linked to a file and has undergone modifications. This function is subsequently added to the *auto-save-hook*, ensuring its execution whenever Emacs initiates an auto-save.
 
@@ -272,7 +272,7 @@ This block of code sets up Emacs' *auto-save* feature. It designates the tempora
 
 #+END_SRC
 
-* UI & APPEARANCE 
+* Appearance 
 
 ** OS X Specific Settings
 
@@ -695,7 +695,7 @@ This block of code installs and configures the *which-key* package via the *use-
 
 #+END_SRC
 
-* KEYBINDING SETTINGS
+* Keybindings
 
 ** Evil Mode Settings
 
@@ -996,7 +996,7 @@ These configurations aim to provide quick access to frequently used commands and
 
 #+END_SRC
 
-* TERMINAL FRAMEWORKS
+* Terminal Frameworks
 
 ** Vterm Settings
 
@@ -1119,7 +1119,7 @@ This block of code installs and configures the *eshell-toggle* package and the *
 
 #+END_SRC
 
-* COMPLETION FRAMEWORKS
+* Completion Frameworks
 
 ** Vertico Mode Settings
 
@@ -1310,7 +1310,7 @@ This block of code installs and configures the *consult* package, the *consult-t
 
 #+END_SRC
 
-* PROGRAMMING FRAMEWORKS
+* Programming Settings
 
 ** Flycheck Settings
 
@@ -1931,7 +1931,7 @@ This block of code installs and configures several packages associated with Org 
 
 #+END_SRC
 
-* MISCELLANEOUS PACKAGES
+* Miscellaneous Packages
 
 This block of code installs and configures several packages in Emacs: *sudo-edit*, *tldr*, *smartparens*, *apheleia*, *csv-mode*, *emojify*, *format-all*, and *adaptive-wrap*. The *sudo-edit* package offers a command to edit the current file as root. The *tldr* package provides access to tldr pages, which are simplified and community-driven man pages. The *smartparens* package supplies support for automatically inserting, wrapping, and navigating paired delimiters like parentheses, set up to enable global smartparens mode. The *apheleia* package provides automatic code formatting, configured to activate global apheleia mode. The *csv-mode* package offers an environment for editing CSV files, set up to guess and set the separator whenever csv-mode is entered. The *emojify* package provides support for displaying emojis in Emacs, configured to enable global emojify mode post-initialization. The *format-all* package offers a command to format all code according to a formatter, set up to activate format-all mode whenever a programming mode (*prog-mode*) is entered. Lastly, the *adaptive-wrap* package is installed, providing adaptive line-wrapping with wrap-prefix.
 
@@ -1995,7 +1995,7 @@ This block of code installs and configures several packages in Emacs: *sudo-edit
 
 #+END_SRC
 
-* LIST OF ALL KEYBINDINGS
+* List of all Keybindings
 
 | Keybinding      | Command                             | Defined With          |
 |-----------------+-------------------------------------+-----------------------|
@@ -2134,9 +2134,9 @@ This block of code installs and configures several packages in Emacs: *sudo-edit
 | !               | consult-flycheck                    | flycheck-command-map  |
 | M-/             | evilnc-comment-or-uncomment-lines   | global-set-key        |
 
-* CONFIG FILE ENDS HERE
+* End of the Configuration File
 
-** emacs_config.el file top contents
+** Bottom Contents
 
 This line of code is a comment signifying the end of an Emacs configuration file, typically titled *emacs_config.el*. In Emacs Lisp, comments commence with a semicolon (;). The quantity of semicolons utilized can represent the level or significance of the comment. Here, three semicolons are employed to denote a section-level comment.
 
