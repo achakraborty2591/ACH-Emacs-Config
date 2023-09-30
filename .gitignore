@@ -17,3 +17,4 @@ eshell/
 .cache/
 .lsp-session-v1
 url/
+.dap-breakpoints
