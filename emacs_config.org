@@ -11,7 +11,15 @@ This org file is basically a manual of my entire emacs configuration. This file 
 
 ** Top contents
 
-This is the header and introductory comments for a GNU Emacs configuration file named emacs_config.el. The author/maintainer of this file is Anirban Chakraborty, whose email address and GitHub page are provided. This file is not part of the official GNU Emacs software but is distributed under the terms of the GNU General Public License version 3 or any later version. It comes without any warranty. The commentary section indicates that this file provides a complete configuration for GNU Emacs.
+This is the header and introductory comments for a GNU Emacs configuration file. The author/maintainer of this file is Anirban Chakraborty, whose email address and GitHub page are provided. This file is not part of the official GNU Emacs software but is distributed under the terms of the GNU General Public License version 3 or any later version. It comes without any warranty. The commentary section indicates that this file provides a complete configuration for GNU Emacs.
+
+#+BEGIN_SRC python
+print("Hello, World!")
+x = 10
+y = 20
+result = x + y
+print("Result:", result)
+#+END_SRC
 
 #+BEGIN_SRC emacs-lisp
 
