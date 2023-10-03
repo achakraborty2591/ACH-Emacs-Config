@@ -2134,7 +2134,7 @@ This Emacs Lisp code block configures several packages to enhance various aspect
 
 ** Bottom Contents
 
-This line of code is a comment signifying the end of an Emacs configuration file, typically titled *emacs_config.el*. In Emacs Lisp, comments commence with a semicolon (;). The quantity of semicolons utilized can represent the level or significance of the comment. Here, three semicolons are employed to denote a section-level comment.
+This line of code is a comment signifying the end of an Emacs configuration file. In Emacs Lisp, comments commence with a semicolon (;). The quantity of semicolons utilized can represent the level or significance of the comment. Here, three semicolons are employed to denote a section-level comment.
 
 #+BEGIN_SRC emacs-lisp
   ;;; emacs_config.el ends here
