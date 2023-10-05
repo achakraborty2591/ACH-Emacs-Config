@@ -342,7 +342,7 @@ The Emacs Lisp code configures several packages related to themes, modeline, and
   (doom-modeline-mode)
   :config
   (setq doom-modeline-height 40)
-  (setq doom-modeline-bar-width 5)
+  ;;(setq doom-modeline-bar-width 5)
   (setq doom-modeline-indent-info t)
   (setq doom-modeline-enable-word-count t)
   (setq doom-modeline-buffer-file-name-style 'relative-from-project)
@@ -495,7 +495,7 @@ The Emacs Lisp code configures several packages to enhance the functionality and
 
 ** Help Settings
 
-This Emacs Lisp script is for loading and configuring the 'helpful' package, which provides enhanced help buffers in Emacs. The script ensures that the 'helpful' package is installed if it's not already present. It defines commands provided by the package such as helpful-callable, helpful-variable, helpful-command, and helpful-key. In its custom configuration options, it sets counsel's describe function to use helpful-callable and counsel's describe variable to use helpful-variable.
+This Emacs Lisp code block is for loading and configuring the 'helpful' package, which provides enhanced help buffers in Emacs. The script ensures that the 'helpful' package is installed if it's not already present. It defines commands provided by the package such as helpful-callable, helpful-variable, helpful-command, and helpful-key. In its custom configuration options, it sets counsel's describe function to use helpful-callable and counsel's describe variable to use helpful-variable.
 
 #+BEGIN_SRC emacs-lisp
 
